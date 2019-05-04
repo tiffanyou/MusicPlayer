@@ -40,6 +40,15 @@ public class MainActivity extends AppCompatActivity {
                 volUpButton.setEnabled(true);
                 volDownButton.setEnabled(true);
                 playButton.setEnabled(false);
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        Toast toast = Toast.makeText(getApplicationContext(), "Song finished!", Toast.LENGTH_SHORT);
+                        toast.show();
+                        pauseButton.setEnabled(false);
+                        playButton.setEnabled(true);
+                    }
+                });
             }
         });
 
