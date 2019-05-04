@@ -10,6 +10,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     private Button playButton;
+    private Button streamButton;
     private Button pauseButton;
     private Button volUpButton;
     private Button volDownButton;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         playButton = findViewById(R.id.play);
+        streamButton = findViewById(R.id.stream);
         pauseButton = findViewById(R.id.pause);
         volUpButton = findViewById(R.id.up);
         volDownButton = findViewById(R.id.down);
@@ -40,6 +42,30 @@ public class MainActivity extends AppCompatActivity {
                 volUpButton.setEnabled(true);
                 volDownButton.setEnabled(true);
                 playButton.setEnabled(false);
+            }
+        });
+
+        //handle Stream button click behaviour
+        streamButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = "https://www.android-examples.com/wp-content/uploads/2016/04/Thunder-rumble.mp3";
+                MediaPlayer streamPlayer = new MediaPlayer();
+                streamPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                try {
+                    streamPlayer.setDataSource(url);
+                    streamPlayer.prepare();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Toast toast = Toast.makeText(getApplicationContext(), "File Error!", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                Toast toast = Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_SHORT);
+                toast.show();
+                streamPlayer.start();
+                pauseButton.setEnabled(true);
+                volUpButton.setEnabled(true);
+                volDownButton.setEnabled(true);
             }
         });
 
