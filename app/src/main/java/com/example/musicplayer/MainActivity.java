@@ -20,10 +20,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        playButton = (Button) findViewById(R.id.play);
-        pauseButton = (Button) findViewById(R.id.pause);
-        volUpButton = (Button) findViewById(R.id.up);
-        volDownButton = (Button) findViewById(R.id.down);
+        playButton = findViewById(R.id.play);
+        pauseButton = findViewById(R.id.pause);
+        volUpButton = findViewById(R.id.up);
+        volDownButton = findViewById(R.id.down);
         mediaPlayer = MediaPlayer.create(this, R.raw.ghibli);
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
